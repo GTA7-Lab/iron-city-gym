@@ -21,7 +21,7 @@ Next.js (App Router) + TypeScript, sem banco. Deploy na Vercel. MCP implementado
 - `scripts/test-mcp.mjs` — `npm run test:mcp [url]`
 
 ## Status
-v1 funcional localmente (build ok, test:mcp ok).
+v1 publicada em https://mundo-eric.vercel.app (projeto Vercel ligado ao GitHub, deploy automático na main). MCP: https://mundo-eric.vercel.app/mcp
 
 ## Próxima tarefa
-Deploy na Vercel, preencher `endpoint` no manifest.json e registrar no Core.
+Registrar a entidade no Core Orchestrator.
