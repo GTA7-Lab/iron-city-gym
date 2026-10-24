@@ -1,13 +1,22 @@
 // Servidor MCP mínimo (Streamable HTTP, stateless, respostas JSON).
 import { cancelEnrollment, enroll, getClass, searchClasses, type SearchFilters } from "@/lib/classes";
+import { WIDGET_HTML } from "./widget";
 
 const PROTOCOL_VERSION = "2025-06-18";
+
+// Widget (MCP Apps): hosts com suporte mostram a grade clicável; os demais seguem só com o texto.
+const WIDGET_URI = "ui://iron-city-gym/grade.html";
+const WIDGET_MIME = "text/html;profile=mcp-app";
+const RESOURCES = [
+  { uri: WIDGET_URI, name: "Grade de aulas", description: "Escolha a aula e faça a matrícula", mimeType: WIDGET_MIME },
+];
 
 const TOOLS = [
   {
     name: "search_classes",
     description:
       "Busca aulas coletivas disponíveis (status available) na Academia Iron City, ordenadas por data e horário. Todos os filtros são opcionais.",
+    _meta: { ui: { resourceUri: WIDGET_URI }, "ui/resourceUri": WIDGET_URI },
     inputSchema: {
       type: "object",
       properties: {
@@ -78,11 +87,18 @@ async function handle(msg: RpcMessage) {
     case "initialize":
       return ok({
         protocolVersion: msg.params?.protocolVersion ?? PROTOCOL_VERSION,
-        capabilities: { tools: {} },
+        capabilities: { tools: {}, resources: {} },
         serverInfo: { name: "iron-city-gym", version: "0.2.0" },
       });
     case "ping":
       return ok({});
+    case "resources/list":
+      return ok({ resources: RESOURCES });
+    case "resources/read":
+      if (msg.params?.uri !== WIDGET_URI) return err(-32002, `Resource not found: ${msg.params?.uri}`);
+      return ok({
+        contents: [{ uri: WIDGET_URI, mimeType: WIDGET_MIME, text: WIDGET_HTML, _meta: { ui: { prefersBorder: false } } }],
+      });
     case "tools/list":
       return ok({ tools: TOOLS });
     case "tools/call": {

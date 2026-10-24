@@ -16,6 +16,9 @@ const init = await rpc("initialize", { protocolVersion: "2025-06-18", capabiliti
 assert(init.serverInfo.name === "iron-city-gym", "initialize");
 const { tools } = await rpc("tools/list");
 assert(tools.map((t) => t.name).join() === "search_classes,get_class,enroll_class,cancel_enrollment", "tools/list");
+const uri = tools[0]._meta?.ui?.resourceUri;
+const ui = (await rpc("resources/read", { uri })).contents?.[0];
+assert(uri && ui?.mimeType === "text/html;profile=mcp-app" && ui.text.includes("ui/initialize"), "search_classes tem widget (resources/read)");
 
 const all = await call("search_classes", {});
 assert(all.classes.every((c) => c.status === "available"), `search_classes só available (${all.count})`);

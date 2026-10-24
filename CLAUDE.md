@@ -16,11 +16,13 @@ Next.js (App Router) + TypeScript, Postgres no Neon (`DATABASE_URL`, driver `@ne
 - `get_class` { id } → aula completa (qualquer status) ou `{ "error": "not_found" }`.
 - `enroll_class` { class_id, name } → `{ ok, class_id, name, spots_left }` ou `{ error: not_found|cancelled|full|already_enrolled|invalid_name }`. Ocupar a vaga e gravar é um comando só (sem overbooking).
 - `cancel_enrollment` { class_id, name } → `{ ok, ... }` ou `{ error: not_found|not_enrolled }`.
+- Widget (MCP Apps): `search_classes` tem `_meta.ui.resourceUri = ui://iron-city-gym/grade.html`; `resources/read` entrega o HTML (`text/html;profile=mcp-app`). Hosts com suporte mostram a grade com botão Reservar (chama `enroll_class`/`cancel_enrollment` via postMessage); o texto da tool não muda.
 
 ## Arquivos principais
 - `lib/classes.ts` — tipos, acesso ao banco, busca, filtros, matrícula (usado pela página, API e MCP)
 - `scripts/seed.mjs` — schema + carga de `data/classes.json`
 - `app/mcp/route.ts` — servidor MCP
+- `app/mcp/widget.ts` — HTML do widget (sem SDK, sem recursos externos)
 - `app/page.tsx` — grade + filtros (form GET); `app/aulas/[id]/page.tsx` — detalhes
 - `app/api/classes/route.ts` — mesma busca via GET ?filtros
 - `manifest.json` — manifesto para o Core
