@@ -80,6 +80,8 @@ async function callTool(name: string, args: any = {}) {
 }
 
 async function handle(msg: RpcMessage) {
+  // Log curto para diagnosticar hosts (quem conecta, se pede o widget).
+  console.log("mcp", msg.method, msg.method === "initialize" ? JSON.stringify({ client: msg.params?.clientInfo, capabilities: msg.params?.capabilities }) : msg.method === "tools/call" ? msg.params?.name : msg.method === "resources/read" ? msg.params?.uri : "");
   const ok = (result: unknown) => ({ jsonrpc: "2.0", id: msg.id, result });
   const err = (code: number, message: string) => ({ jsonrpc: "2.0", id: msg.id ?? null, error: { code, message } });
 
@@ -87,7 +89,7 @@ async function handle(msg: RpcMessage) {
     case "initialize":
       return ok({
         protocolVersion: msg.params?.protocolVersion ?? PROTOCOL_VERSION,
-        capabilities: { tools: {}, resources: {} },
+        capabilities: { tools: {}, resources: {}, extensions: { "io.modelcontextprotocol/ui": {} } },
         serverInfo: { name: "iron-city-gym", version: "0.2.0" },
       });
     case "ping":
