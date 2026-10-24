@@ -1,0 +1,7 @@
+{
+  "id": "gym",
+  "name": "Iron City Gym",
+  "description": "Academia da GTA7 Lab: consulta aulas coletivas por data, modalidade, nível, preço e vagas",
+  "endpoint": "<URL da Vercel>/mcp",
+  "tools": ["search_classes", "get_class"]
+}
