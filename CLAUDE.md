@@ -27,7 +27,7 @@ Next.js (App Router) + TypeScript, Postgres no Neon (`DATABASE_URL`, driver `@ne
 - `scripts/test-mcp.mjs` — `npm run test:mcp [url]`
 
 ## Status
-v1 publicada em https://mundo-eric.vercel.app (projeto Vercel ligado ao GitHub, deploy automático na main). MCP: https://mundo-eric.vercel.app/mcp
+v1 publicada em https://iron-city-gym-ecru.vercel.app (projeto Vercel iron-city-gym, ligado a GTA7-Lab/iron-city-gym, deploy automático na main). MCP: https://iron-city-gym-ecru.vercel.app/mcp
 
 ## Próxima tarefa
 Registrar a entidade no Core Orchestrator.
