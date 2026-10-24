@@ -1,7 +1,12 @@
 {
   "id": "gym",
   "name": "Iron City Gym",
-  "description": "Academia da GTA7 Lab: consulta aulas coletivas por data, modalidade, nível, preço e vagas",
+  "description": "Academia da GTA7 Lab: consulta aulas coletivas por data, modalidade, nível, preço e vagas, e matricula ou cancela pessoas nas aulas",
   "endpoint": "https://mundo-eric.vercel.app/mcp",
-  "tools": ["search_classes", "get_class"]
+  "tools": [
+    "search_classes",
+    "get_class",
+    "enroll_class",
+    "cancel_enrollment"
+  ]
 }

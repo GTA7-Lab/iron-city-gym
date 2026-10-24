@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { fmtDate, getClass } from "@/lib/classes";
 
 export default async function ClassPage({ params }: { params: Promise<{ id: string }> }) {
-  const c = getClass((await params).id);
+  const c = await getClass((await params).id);
   if ("error" in c) notFound();
 
   return (

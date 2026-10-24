@@ -10,7 +10,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Par
   const hasFilters = Object.values(p).some(Boolean);
   const num = (v?: string) => (v ? Number(v) : undefined);
   const classes: GymClass[] = hasFilters
-    ? searchClasses({
+    ? await searchClasses({
         date: p.date || undefined,
         modality: p.modality || undefined,
         level: p.level || undefined,
@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Par
         min_time: p.min_time || undefined,
         min_spots: num(p.min_spots),
       })
-    : allClasses();
+    : await allClasses();
 
   return (
     <>

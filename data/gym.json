@@ -1,0 +1,22 @@
+{
+  "name": "Academia Iron City",
+  "address": "Av. das Forjas, 700 — Distrito Industrial, Iron City (GTA7 Lab)",
+  "phone": "(00) 4000-7000",
+  "opening_hours": {
+    "seg-sex": "05:30–23:00",
+    "sab": "07:00–18:00",
+    "dom": "08:00–14:00"
+  },
+  "plans": [
+    { "name": "Aula avulsa", "price": null, "description": "Paga só a aula coletiva reservada; o preço está em cada aula." },
+    { "name": "Mensal Musculação", "price": 119, "description": "Acesso livre à sala de musculação, sem aulas coletivas." },
+    { "name": "Mensal Completo", "price": 189, "description": "Musculação e todas as aulas coletivas, sujeito a vagas." },
+    { "name": "Trimestral Completo", "price": 499, "description": "Plano Completo por 3 meses pagos de uma vez." }
+  ],
+  "policies": [
+    "Reserva de aula coletiva por nome; uma vaga por reserva.",
+    "Cancelamento gratuito antes do início da aula.",
+    "Chegar com 10 minutos de antecedência; após 10 minutos de aula a vaga pode ser liberada."
+  ],
+  "amenities": ["Vestiários com armários", "Estacionamento", "Bebedouros", "Wi-Fi"]
+}

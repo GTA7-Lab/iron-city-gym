@@ -1,10 +1,10 @@
 import { searchClasses } from "@/lib/classes";
 
-export function GET(req: Request) {
+export async function GET(req: Request) {
   const p = new URL(req.url).searchParams;
   const num = (k: string) => (p.get(k) ? Number(p.get(k)) : undefined);
   return Response.json(
-    searchClasses({
+    await searchClasses({
       date: p.get("date") || undefined,
       modality: p.get("modality") || undefined,
       level: p.get("level") || undefined,
